@@ -1,0 +1,26 @@
+{
+  "default (3000 sat/kvB)": {
+    "P2PKH (legacy)": 546,
+    "P2SH-P2WPKH": 540,
+    "P2WPKH (bech32)": 294,
+    "P2TR (bech32m)": 330
+  },
+  "-dustrelayfee=0.00003000": {
+    "P2PKH (legacy)": 546,
+    "P2SH-P2WPKH": 540,
+    "P2WPKH (bech32)": 294,
+    "P2TR (bech32m)": 330
+  },
+  "-dustrelayfee=0.00000100": {
+    "P2PKH (legacy)": 19,
+    "P2SH-P2WPKH": 18,
+    "P2WPKH (bech32)": 10,
+    "P2TR (bech32m)": 11
+  },
+  "-dustrelayfee=0": {
+    "P2PKH (legacy)": 1,
+    "P2SH-P2WPKH": 1,
+    "P2WPKH (bech32)": 1,
+    "P2TR (bech32m)": 1
+  }
+}

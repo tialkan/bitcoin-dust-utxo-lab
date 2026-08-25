@@ -1,0 +1,29 @@
+{
+  "2a_standardness_ceiling": {
+    "largest_accepted": {
+      "n_outputs": 3222,
+      "weight": 399973,
+      "vsize": 99994,
+      "allowed": true,
+      "reject_reason": ""
+    },
+    "smallest_rejected": {
+      "n_outputs": 3223,
+      "weight": 400097,
+      "vsize": 100025,
+      "allowed": false,
+      "reject_reason": "tx-size"
+    },
+    "policy_constant_MAX_STANDARD_TX_WEIGHT": 400000
+  },
+  "2b_cluster_limit": {
+    "parent_vsize": 93112,
+    "parent_weight": 372445,
+    "child_vsize": 93112,
+    "child_weight": 372445,
+    "combined_cluster_vsize": 186224,
+    "cluster_size_limit_vbytes": 101000,
+    "child_allowed": false,
+    "child_reject_reason": "too-large-cluster"
+  }
+}

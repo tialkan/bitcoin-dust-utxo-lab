@@ -1,0 +1,56 @@
+{
+  "node_args": [
+    "-maxmempool=300"
+  ],
+  "probes": [
+    {
+      "n_outputs": 3300,
+      "weight": 409645,
+      "vsize": 102412,
+      "allowed": true,
+      "reject_reason": ""
+    },
+    {
+      "n_outputs": 10000,
+      "weight": 1240445,
+      "vsize": 310112,
+      "allowed": true,
+      "reject_reason": ""
+    },
+    {
+      "n_outputs": 20000,
+      "weight": 2480445,
+      "vsize": 620112,
+      "allowed": true,
+      "reject_reason": ""
+    },
+    {
+      "n_outputs": 31000,
+      "weight": 3844445,
+      "vsize": 961112,
+      "allowed": true,
+      "reject_reason": ""
+    },
+    {
+      "n_outputs": 31400,
+      "weight": 3894045,
+      "vsize": 973512,
+      "allowed": true,
+      "reject_reason": ""
+    },
+    {
+      "n_outputs": 31500,
+      "weight": 3906445,
+      "vsize": 976612,
+      "allowed": false,
+      "reject_reason": "tx-size"
+    },
+    {
+      "n_outputs": 32000,
+      "weight": 3968445,
+      "vsize": 992112,
+      "allowed": false,
+      "reject_reason": "tx-size"
+    }
+  ]
+}
