@@ -9,8 +9,20 @@ and publishes the harness so the numbers can be checked.
 
 ## Findings
 
-See [`findings/`](findings/) for the write-ups and [`results/`](results/)
-for the raw JSON output of each run.
+1. [The 1-sat dust threshold needs no code change](findings/01-dust-threshold-needs-no-code-change.md)
+   - `-dustrelayfee=0` yields a 1-sat threshold on every standard output
+     type in unmodified v31.1, on any network.
+2. [Raising the max standard tx weight is not a one-constant change](findings/02-tx-weight-is-not-a-one-line-change.md)
+   - It does not compile. Core has a `static_assert` chain that forces
+     three coupled constants to move together.
+3. [What a 1-sat output costs, and who pays it](findings/03-what-a-1-sat-output-costs.md)
+   - 42.65 bytes of chainstate per output, permanently. A block of dust
+     costs its creator 0.01 BTC and every node operator 1.37 MB forever.
+4. [The work is the tests, not the constants](findings/04-the-work-is-the-tests.md)
+   - Stock v31.1 unit tests are clean; the three-constant patch breaks
+     five test cases, three of which are behaviour questions.
+
+Raw JSON for every run is in [`results/`](results/).
 
 ## Reproducing
 

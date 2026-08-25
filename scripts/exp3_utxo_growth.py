@@ -53,12 +53,26 @@ def rss_kb(pid):
         return None
 
 
-def address_pool(node, count):
+def external_address_pool(node, count):
+    """Derive destination addresses from a descriptor the wallet does NOT own.
+
+    This matters for correctness, not just speed. If the 1-sat outputs
+    land on the node's own wallet descriptor, the wallet tracks every
+    one of them and `listunspent` grows to hundreds of megabytes, which
+    both dominates the runtime and perturbs the RSS figure we are trying
+    to measure. Sending to an external descriptor keeps the wallet small
+    so that chainstate growth is what is actually being observed.
+    """
+    node.rpc("createwallet", "throwaway")
+    desc = None
     for d in node.rpc("listdescriptors")["descriptors"]:
-        desc = d["desc"]
-        if desc.startswith("wpkh(") and "/0/*" in desc:
-            return node.rpc("deriveaddresses", desc, [0, count - 1])
-    raise RuntimeError("no ranged wpkh descriptor found")
+        if d["desc"].startswith("wpkh(") and "/0/*" in d["desc"]:
+            desc = d["desc"]
+            break
+    node.rpc("unloadwallet", "throwaway")
+    if desc is None:
+        raise RuntimeError("no ranged wpkh descriptor found")
+    return node.rpc("deriveaddresses", desc, [0, count - 1])
 
 
 def sample(node):
@@ -74,19 +88,33 @@ def sample(node):
 
 
 def biggest_utxo(node):
+    """Only called once, at the start. See external_address_pool for why."""
     return sorted(node.rpc("listunspent", 1), key=lambda u: -u["amount"])[0]
 
 
-def make_batch(node, pool, n_outputs, sats):
-    utxo = biggest_utxo(node)
+FEE = 0.001
+
+
+def make_batch(node, funding, pool, change_addr, n_outputs, sats):
+    """Spend `funding`, create n_outputs dust outputs, return the new change.
+
+    The change outpoint is tracked explicitly rather than rediscovered
+    with listunspent, so each batch costs the same regardless of how many
+    UTXOs the chain already holds. An earlier version of this script
+    called listunspent per batch and died once the response reached
+    ~200 MB.
+    """
     value = sats / COIN
-    change = round(float(utxo["amount"]) - value * n_outputs - 0.01, 8)
+    change = round(float(funding["amount"]) - value * n_outputs - FEE, 8)
+    if change <= 0:
+        raise RuntimeError("funding exhausted")
     outputs = [{pool[i]: f"{value:.8f}"} for i in range(n_outputs)]
-    outputs.append({pool[n_outputs]: f"{change:.8f}"})
+    outputs.append({change_addr: f"{change:.8f}"})
     raw = node.rpc("createrawtransaction",
-                   [{"txid": utxo["txid"], "vout": utxo["vout"]}], outputs)
+                   [{"txid": funding["txid"], "vout": funding["vout"]}], outputs)
     signed = node.rpc("signrawtransactionwithwallet", raw)
-    return node.rpc("sendrawtransaction", signed["hex"])
+    txid = node.rpc("sendrawtransaction", signed["hex"])
+    return {"txid": txid, "vout": n_outputs, "amount": change}
 
 
 def breakeven():
@@ -113,16 +141,21 @@ def main():
     report = {"config": {"n_batches": n_batches, "outs_per_batch": outs,
                          "node_args": args}, "checkpoints": []}
     with RegtestNode(bitcoind, args) as node:
+        # Derive the destination pool first, while it is the only wallet
+        # loaded: with two wallets loaded the unscoped RPC endpoint cannot
+        # resolve wallet calls like listdescriptors.
+        pool = external_address_pool(node, outs + 2)
         node.rpc("createwallet", "lab")
         addr = node.rpc("getnewaddress")
         node.rpc("generatetoaddress", 200, addr)
-        pool = address_pool(node, outs + 2)
+        change_addr = node.rpc("getnewaddress")
+        funding = biggest_utxo(node)
 
         report["baseline"] = sample(node)
         print("baseline:", json.dumps(report["baseline"]), flush=True)
 
         for i in range(1, n_batches + 1):
-            make_batch(node, pool, outs, 1)
+            funding = make_batch(node, funding, pool, change_addr, outs, 1)
             node.rpc("generatetoaddress", 1, addr)
             if i % 25 == 0 or i == n_batches:
                 s = sample(node)

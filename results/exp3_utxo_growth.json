@@ -1,0 +1,110 @@
+{
+  "config": {
+    "n_batches": 150,
+    "outs_per_batch": 3000,
+    "node_args": [
+      "-dustrelayfee=0",
+      "-dbcache=450",
+      "-blockmintxfee=0",
+      "-minrelaytxfee=0"
+    ]
+  },
+  "checkpoints": [
+    {
+      "height": 225,
+      "txouts": 75225,
+      "bogosize": 5416200,
+      "disk_size": 0,
+      "chainstate_bytes": 4812510,
+      "rss_kb": 104960,
+      "batches_done": 25,
+      "one_sat_outputs_created": 75000
+    },
+    {
+      "height": 250,
+      "txouts": 150250,
+      "bogosize": 10818000,
+      "disk_size": 3069147,
+      "chainstate_bytes": 8013662,
+      "rss_kb": 130096,
+      "batches_done": 50,
+      "one_sat_outputs_created": 150000
+    },
+    {
+      "height": 275,
+      "txouts": 225275,
+      "bogosize": 16219800,
+      "disk_size": 6125555,
+      "chainstate_bytes": 11213378,
+      "rss_kb": 153328,
+      "batches_done": 75,
+      "one_sat_outputs_created": 225000
+    },
+    {
+      "height": 300,
+      "txouts": 300300,
+      "bogosize": 21621600,
+      "disk_size": 9182030,
+      "chainstate_bytes": 14413118,
+      "rss_kb": 172096,
+      "batches_done": 100,
+      "one_sat_outputs_created": 300000
+    },
+    {
+      "height": 325,
+      "txouts": 375325,
+      "bogosize": 27023400,
+      "disk_size": 12238473,
+      "chainstate_bytes": 17612863,
+      "rss_kb": 189168,
+      "batches_done": 125,
+      "one_sat_outputs_created": 375000
+    },
+    {
+      "height": 350,
+      "txouts": 450350,
+      "bogosize": 32425200,
+      "disk_size": 15294883,
+      "chainstate_bytes": 20812539,
+      "rss_kb": 213136,
+      "batches_done": 150,
+      "one_sat_outputs_created": 450000
+    }
+  ],
+  "baseline": {
+    "height": 200,
+    "txouts": 200,
+    "bogosize": 14400,
+    "disk_size": 0,
+    "chainstate_bytes": 12830,
+    "rss_kb": 64288
+  },
+  "summary": {
+    "utxos_added": 450150,
+    "chainstate_bytes_added": 20799709,
+    "chainstate_bytes_per_utxo": 46.21,
+    "disk_size_bytes_per_utxo": 33.98,
+    "bogosize_per_utxo": 72.0,
+    "rss_kb_delta": 148848
+  },
+  "economic_spendability": {
+    "P2TR keypath": {
+      "input_vsize": 57.5,
+      "cost_to_spend_at_1_sat_per_vb": 57.5,
+      "max_feerate_for_1sat_output_to_be_spendable_sat_per_vb": 0.01739,
+      "spendable_at_min_relay_fee_1_sat_per_vb": false
+    },
+    "P2WPKH": {
+      "input_vsize": 68.0,
+      "cost_to_spend_at_1_sat_per_vb": 68.0,
+      "max_feerate_for_1sat_output_to_be_spendable_sat_per_vb": 0.01471,
+      "spendable_at_min_relay_fee_1_sat_per_vb": false
+    },
+    "P2PKH": {
+      "input_vsize": 148.0,
+      "cost_to_spend_at_1_sat_per_vb": 148.0,
+      "max_feerate_for_1sat_output_to_be_spendable_sat_per_vb": 0.00676,
+      "spendable_at_min_relay_fee_1_sat_per_vb": false
+    }
+  }
+}
