@@ -43,6 +43,37 @@ on the rate is flat to two decimal places:
 - 72.00 bytes of `bogosize` per UTXO, exactly, as expected for a
   uniform output type
 
+## Cost by output type
+
+The run above used P2WPKH. Repeating it for the other standard output
+types, all at 200,100 UTXOs under identical conditions, gives a
+different answer than script size alone would suggest:
+
+| Output type | steady-state chainstate B/UTXO | `disk_size` B/UTXO | `bogosize` B/UTXO |
+|---|---|---|---|
+| P2TR | 54.62 | 39.45 | 83.99 |
+| P2WPKH | 42.66 | 30.59 | 72.00 |
+| P2PKH | 40.47 | 28.98 | 75.00 |
+
+Note the inversion in the last two rows. P2PKH has the larger
+`bogosize` (75 vs 72), because bogosize counts the scriptPubKey at face
+value and a P2PKH script is 25 bytes against P2WPKH's 22. On disk the
+order reverses, because the chainstate compresses recognised script
+templates: P2PKH compresses, P2WPKH and P2TR are stored close to
+verbatim. So the cheapest output to hold on disk is the largest one on
+the wire.
+
+The practical consequence is that P2TR, the output type most likely to
+be used for the transactions this policy change is aimed at, is also the
+most expensive to carry: about 55 bytes of chainstate per UTXO against
+about 41 for P2PKH.
+
+Steady-state figures are used rather than run averages. LevelDB's file
+allocation produces a one-off jump that lands in a different checkpoint
+in each run (first interval for P2TR and P2WPKH, second for P2PKH), so
+averaging over the whole run would compare different amounts of
+allocation noise.
+
 ## What that means per block
 
 From the measured transaction shape, a P2WPKH output costs 31.04 vB of

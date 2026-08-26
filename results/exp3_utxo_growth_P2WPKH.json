@@ -1,0 +1,92 @@
+{
+  "config": {
+    "n_batches": 100,
+    "outs_per_batch": 2000,
+    "output_type": "P2WPKH",
+    "descriptor_prefix": "wpkh(",
+    "node_args": [
+      "-dustrelayfee=0",
+      "-dbcache=450",
+      "-blockmintxfee=0",
+      "-minrelaytxfee=0"
+    ]
+  },
+  "checkpoints": [
+    {
+      "height": 225,
+      "txouts": 50225,
+      "bogosize": 3616200,
+      "disk_size": 0,
+      "chainstate_bytes": 3212174,
+      "rss_kb": 93456,
+      "batches_done": 25,
+      "one_sat_outputs_created": 50000
+    },
+    {
+      "height": 250,
+      "txouts": 100250,
+      "bogosize": 7218000,
+      "disk_size": 2048821,
+      "chainstate_bytes": 5347670,
+      "rss_kb": 110256,
+      "batches_done": 50,
+      "one_sat_outputs_created": 100000
+    },
+    {
+      "height": 275,
+      "txouts": 150275,
+      "bogosize": 10819800,
+      "disk_size": 4085026,
+      "chainstate_bytes": 7481496,
+      "rss_kb": 124800,
+      "batches_done": 75,
+      "one_sat_outputs_created": 150000
+    },
+    {
+      "height": 300,
+      "txouts": 200300,
+      "bogosize": 14421600,
+      "disk_size": 6121166,
+      "chainstate_bytes": 9615292,
+      "rss_kb": 138736,
+      "batches_done": 100,
+      "one_sat_outputs_created": 200000
+    }
+  ],
+  "baseline": {
+    "height": 200,
+    "txouts": 200,
+    "bogosize": 14400,
+    "disk_size": 0,
+    "chainstate_bytes": 12830,
+    "rss_kb": 64128
+  },
+  "summary": {
+    "utxos_added": 200100,
+    "chainstate_bytes_added": 9602462,
+    "chainstate_bytes_per_utxo": 47.99,
+    "disk_size_bytes_per_utxo": 30.59,
+    "bogosize_per_utxo": 72.0,
+    "rss_kb_delta": 74608
+  },
+  "economic_spendability": {
+    "P2TR keypath": {
+      "input_vsize": 57.5,
+      "cost_to_spend_at_1_sat_per_vb": 57.5,
+      "max_feerate_for_1sat_output_to_be_spendable_sat_per_vb": 0.01739,
+      "spendable_at_min_relay_fee_1_sat_per_vb": false
+    },
+    "P2WPKH": {
+      "input_vsize": 68.0,
+      "cost_to_spend_at_1_sat_per_vb": 68.0,
+      "max_feerate_for_1sat_output_to_be_spendable_sat_per_vb": 0.01471,
+      "spendable_at_min_relay_fee_1_sat_per_vb": false
+    },
+    "P2PKH": {
+      "input_vsize": 148.0,
+      "cost_to_spend_at_1_sat_per_vb": 148.0,
+      "max_feerate_for_1sat_output_to_be_spendable_sat_per_vb": 0.00676,
+      "spendable_at_min_relay_fee_1_sat_per_vb": false
+    }
+  }
+}

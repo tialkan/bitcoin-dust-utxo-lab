@@ -53,7 +53,7 @@ def rss_kb(pid):
         return None
 
 
-def external_address_pool(node, count):
+def external_address_pool(node, count, desc_prefix="wpkh("):
     """Derive destination addresses from a descriptor the wallet does NOT own.
 
     This matters for correctness, not just speed. If the 1-sat outputs
@@ -66,12 +66,12 @@ def external_address_pool(node, count):
     node.rpc("createwallet", "throwaway")
     desc = None
     for d in node.rpc("listdescriptors")["descriptors"]:
-        if d["desc"].startswith("wpkh(") and "/0/*" in d["desc"]:
+        if d["desc"].startswith(desc_prefix) and "/0/*" in d["desc"]:
             desc = d["desc"]
             break
     node.rpc("unloadwallet", "throwaway")
     if desc is None:
-        raise RuntimeError("no ranged wpkh descriptor found")
+        raise RuntimeError(f"no ranged {desc_prefix} descriptor found")
     return node.rpc("deriveaddresses", desc, [0, count - 1])
 
 
@@ -136,15 +136,21 @@ def main():
     bitcoind = sys.argv[1]
     n_batches = int(sys.argv[2]) if len(sys.argv) > 2 else 150
     outs = int(sys.argv[3]) if len(sys.argv) > 3 else 3000
+    # Output type under test. Chainstate cost per UTXO is expected to depend on
+    # the scriptPubKey size, so measuring only one type leaves the table half
+    # written.
+    desc_prefix = sys.argv[4] if len(sys.argv) > 4 else "wpkh("
+    out_label = {"wpkh(": "P2WPKH", "tr(": "P2TR", "pkh(": "P2PKH"}.get(desc_prefix, desc_prefix)
 
     args = ["-dustrelayfee=0", "-dbcache=450", "-blockmintxfee=0", "-minrelaytxfee=0"]
     report = {"config": {"n_batches": n_batches, "outs_per_batch": outs,
+                         "output_type": out_label, "descriptor_prefix": desc_prefix,
                          "node_args": args}, "checkpoints": []}
     with RegtestNode(bitcoind, args) as node:
         # Derive the destination pool first, while it is the only wallet
         # loaded: with two wallets loaded the unscoped RPC endpoint cannot
         # resolve wallet calls like listdescriptors.
-        pool = external_address_pool(node, outs + 2)
+        pool = external_address_pool(node, outs + 2, desc_prefix)
         node.rpc("createwallet", "lab")
         addr = node.rpc("getnewaddress")
         node.rpc("generatetoaddress", 200, addr)
@@ -183,7 +189,7 @@ def main():
     print("break-even:", json.dumps(report["economic_spendability"], indent=2))
 
     path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                        "results", "exp3_utxo_growth.json")
+                        "results", f"exp3_utxo_growth_{out_label}.json")
     with open(path, "w") as fh:
         json.dump(report, fh, indent=2)
     print(f"\nwrote {path}")
