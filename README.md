@@ -24,6 +24,12 @@ and publishes the harness so the numbers can be checked.
      start at all, because the enforced `-maxmempool` minimum moves to
      39 MB.
 
+5. [Preferential peering works, and it is not free](findings/05-preferential-peering.md)
+   - The mechanism is confirmed. Reserving 4 outbound slots costs
+     exactly 4 inbound slots: 114 to 110 at default `-maxconnections`.
+     Whether nodes find each other at a given adoption rate is left
+     open, with the reason stated.
+
 Raw JSON for every run is in [`results/`](results/).
 
 ## Reproducing

@@ -1,0 +1,61 @@
+{
+  "6a_service_bit": {
+    "dog_build_advertises_bit": true,
+    "stock_build_advertises_bit": false,
+    "dog_localservices_hex": "0x10000c09"
+  },
+  "6b_reserved_slot_connection": {
+    "connection_types_on_initiator": {
+      "dog-relay": 1
+    },
+    "dog_relay_connection_established": true
+  },
+  "6c_handshake_enforcement": {
+    "target": "127.0.0.1:62909",
+    "peers_before": [
+      "127.0.0.1:62904"
+    ],
+    "peers_after": [
+      "127.0.0.1:62904"
+    ],
+    "connection_was_observed": false,
+    "non_signalling_peer_dropped": true,
+    "surviving_conn_types": {
+      "dog-relay": 1
+    }
+  },
+  "6d_inbound_cost": {
+    "stock": {
+      "maxconnections": 20,
+      "sockets_opened": 40,
+      "peak_connections_in": 9,
+      "final_connections_in": 9
+    },
+    "dog": {
+      "maxconnections": 20,
+      "sockets_opened": 40,
+      "peak_connections_in": 5,
+      "final_connections_in": 5
+    },
+    "expected_difference": 4,
+    "observed_difference": 4,
+    "note": "m_max_inbound is max_automatic_connections minus automatic outbound, and the reserved slots are part of that subtraction. See CConnman::Init in net.h."
+  },
+  "not_measured": "peer discovery at a given adoption rate; see module docstring for why a single host cannot answer it honestly",
+  "6d_inbound_cost_maxconnections_125": {
+    "stock": {
+      "maxconnections": 125,
+      "sockets_opened": 130,
+      "peak_connections_in": 114,
+      "final_connections_in": 114
+    },
+    "dog": {
+      "maxconnections": 125,
+      "sockets_opened": 130,
+      "peak_connections_in": 110,
+      "final_connections_in": 110
+    },
+    "observed_difference": 4,
+    "relative_reduction_pct": 3.5
+  }
+}
