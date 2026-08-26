@@ -65,5 +65,57 @@ test rework, deciding the side effects in Finding 2, and then carrying
 all of it forward across every upstream release, since these files are
 among the more actively changed in Core.
 
-Functional tests (`test/functional`) are not included in this run and
-will add to the list. That measurement is still to do.
+## Functional tests
+
+Same method: both binaries, same runner invocation, `-j10`, 267 test
+files.
+
+Stock v31.1 baseline is not clean on this machine. Two tests fail for
+environmental reasons (`interface_http.py`, `tool_utxo_to_sqlite.py`)
+and 21 are skipped, mostly macOS-unsupported ZMQ, USDT, IPC and bind
+tests. Reporting a raw failure count without that baseline would have
+charged those two to the patch.
+
+Patched: 23 failures, of which 21 are attributable to the patch.
+
+The split matters more than the number.
+
+**Eleven are not test failures at all. The node refuses to start.**
+
+```
+Error: -maxmempool must be at least 39 MB
+```
+
+`feature_fee_estimation`, `mempool_limit`, `mempool_package_rbf`,
+`p2p_addr_relay`, `p2p_blocksonly`, `p2p_compactblocks_blocksonly`,
+`p2p_feefilter`, `p2p_opportunistic_1p1c`, `p2p_sendtxrcncl`,
+`p2p_tx_download`, `rpc_packages`.
+
+Every one of these starts a node with a small `-maxmempool`. Raising
+`DEFAULT_CLUSTER_SIZE_LIMIT_KVB` to 975 raises the enforced minimum to
+39 MB, and `Flatten()` in `txmempool.cpp` treats it as a fatal
+configuration error rather than clamping. Note what this means beyond
+the test suite: any operator, deployment script, or CI job that pins a
+small mempool stops booting after upgrading. That is a migration
+problem, not a test problem, and it is invisible if you only read the
+constant diff.
+
+**Ten are genuine policy behaviour changes.**
+
+`mempool_accept`, `mempool_datacarrier`, `mempool_package_limits`,
+`mempool_sigoplimit`, `p2p_segwit`, `rpc_psbt`,
+`wallet_fundrawtransaction`, `wallet_miniscript`, `wallet_send`,
+`wallet_sendall`.
+
+`mempool_datacarrier` failing is direct confirmation of the coupling
+predicted in Finding 2: `MAX_OP_RETURN_RELAY` is derived from
+`MAX_STANDARD_TX_WEIGHT`, so the default datacarrier limit moved from
+100,000 to 975,000 bytes without anyone asking for it. The four wallet
+tests failing shows the change reaches past relay policy into coin
+selection and funding.
+
+## Revised total
+
+Five unit test cases and 21 functional tests, against a three line
+diff. Two of the unit failures and none of the functional ones are
+simple expectation updates.

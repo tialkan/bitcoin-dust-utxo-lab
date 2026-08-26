@@ -99,9 +99,16 @@ v31.1.
 2. `src/txmempool.cpp` (`Flatten`) requires
    `-maxmempool >= cluster_size_vbytes * 40`. At
    `DEFAULT_CLUSTER_SIZE_LIMIT_KVB = 975` the minimum `-maxmempool`
-   becomes 39 MB, up from about 4 MB. Below the 300 MB default, so not
-   a blocker, but it is a new floor for operators who run trimmed
-   mempools.
+   becomes 39 MB, up from about 4 MB. It sits below the 300 MB default,
+   so a node started with default settings is unaffected.
+
+   An earlier version of this document called that "not a blocker".
+   That understated it, and Finding 4 shows why: a node given a smaller
+   `-maxmempool` does not warn and fall back, it refuses to start with
+   `Error: -maxmempool must be at least 39 MB`. Eleven functional tests
+   fail on that alone, before any policy behaviour is exercised. Any
+   operator, test harness, or CI job that pins a small mempool breaks
+   outright.
 
 ## What this means for the project
 

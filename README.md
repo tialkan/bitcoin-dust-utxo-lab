@@ -19,8 +19,10 @@ and publishes the harness so the numbers can be checked.
    - 42.65 bytes of chainstate per output, permanently. A block of dust
      costs its creator 0.01 BTC and every node operator 1.37 MB forever.
 4. [The work is the tests, not the constants](findings/04-the-work-is-the-tests.md)
-   - Stock v31.1 unit tests are clean; the three-constant patch breaks
-     five test cases, three of which are behaviour questions.
+   - Against a three line diff: five unit test cases and 21 functional
+     tests. Eleven of the functional failures are the node refusing to
+     start at all, because the enforced `-maxmempool` minimum moves to
+     39 MB.
 
 Raw JSON for every run is in [`results/`](results/).
 

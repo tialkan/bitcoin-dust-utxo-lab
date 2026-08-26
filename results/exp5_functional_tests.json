@@ -1,0 +1,45 @@
+{
+  "method": "test/functional/test_runner.py -j10, 267 test files, identical invocation on both builds",
+  "stock_v31_1": {
+    "failed": [
+      "interface_http.py",
+      "tool_utxo_to_sqlite.py"
+    ],
+    "note": "environmental, not policy related",
+    "skipped": 21
+  },
+  "patched": {
+    "failed_total": 23,
+    "attributable_to_patch": 21
+  },
+  "attributable_node_will_not_start": {
+    "cause": "Error: -maxmempool must be at least 39 MB",
+    "tests": [
+      "feature_fee_estimation.py",
+      "mempool_limit.py",
+      "mempool_package_rbf.py",
+      "p2p_addr_relay.py",
+      "p2p_blocksonly.py",
+      "p2p_compactblocks_blocksonly.py",
+      "p2p_feefilter.py",
+      "p2p_opportunistic_1p1c.py",
+      "p2p_sendtxrcncl.py",
+      "p2p_tx_download.py",
+      "rpc_packages.py"
+    ]
+  },
+  "attributable_policy_behaviour": {
+    "tests": [
+      "mempool_accept.py",
+      "mempool_datacarrier.py",
+      "mempool_package_limits.py",
+      "mempool_sigoplimit.py",
+      "p2p_segwit.py",
+      "rpc_psbt.py",
+      "wallet_fundrawtransaction.py",
+      "wallet_miniscript.py",
+      "wallet_send.py",
+      "wallet_sendall.py"
+    ]
+  }
+}
