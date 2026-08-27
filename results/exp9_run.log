@@ -1,0 +1,50 @@
+--- stock v31.1, 100 kvB txs ---
+{
+  "build": "stock v31.1, 100 kvB txs",
+  "maxmempool_mb": 5,
+  "outputs_per_tx": 3200,
+  "max_tx_vsize": 99312,
+  "single_tx_share_of_mempool_pct": 1.99,
+  "txs_accepted": 30,
+  "mempool_bytes": 2979360,
+  "mempool_usage": 4642656,
+  "mempool_txcount": 30,
+  "mempoolminfee_btc_kvb": 1e-06,
+  "probe_ordinary_tx_accepted": true,
+  "probe_reject_reason": "",
+  "first_reject": null
+}
+--- PR#3, 975 kvB txs ---
+{
+  "build": "PR#3, 975 kvB txs",
+  "maxmempool_mb": 5,
+  "outputs_per_tx": 31000,
+  "max_tx_vsize": 961112,
+  "single_tx_share_of_mempool_pct": 19.22,
+  "txs_accepted": 4,
+  "mempool_bytes": 2883336,
+  "mempool_usage": 4467512,
+  "mempool_txcount": 3,
+  "mempoolminfee_btc_kvb": 1.299e-05,
+  "probe_ordinary_tx_accepted": true,
+  "probe_reject_reason": "",
+  "first_reject": "[-26] mempool min fee not met, 1153332 < 1248485"
+}
+--- PR#3, 100 kvB txs (control) ---
+{
+  "build": "PR#3, 100 kvB txs (control)",
+  "maxmempool_mb": 5,
+  "outputs_per_tx": 3200,
+  "max_tx_vsize": 99312,
+  "single_tx_share_of_mempool_pct": 1.99,
+  "txs_accepted": 30,
+  "mempool_bytes": 2979360,
+  "mempool_usage": 4642656,
+  "mempool_txcount": 30,
+  "mempoolminfee_btc_kvb": 1e-06,
+  "probe_ordinary_tx_accepted": true,
+  "probe_reject_reason": "",
+  "first_reject": null
+}
+
+wrote /Users/baris/bitcoin-lab/dust-utxo-lab/results/exp9_mempool_floor.json

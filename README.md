@@ -33,6 +33,12 @@ and publishes the harness so the numbers can be checked.
      inbound cost. Starting from gossip rather than a pre-filled
      addrman, it did not engage at all in 25 minutes.
 
+6. [What changes at the `-maxmempool` floor](findings/06-the-mempool-floor.md)
+   - At the floor, one maximum-size transaction is 19% of the mempool
+     instead of 2%. Four transactions raise the minimum feerate 13x,
+     where thirty leave stock's untouched. A control run separates this
+     from the multiplier change itself.
+
 Raw JSON for every run is in [`results/`](results/).
 
 ## Reproducing
