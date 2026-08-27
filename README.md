@@ -25,10 +25,11 @@ and publishes the harness so the numbers can be checked.
      39 MB.
 
 5. [Preferential peering works, and it is not free](findings/05-preferential-peering.md)
-   - The mechanism is confirmed. Reserving 4 outbound slots costs
-     exactly 4 inbound slots: 114 to 110 at default `-maxconnections`.
-     Whether nodes find each other at a given adoption rate is left
-     open, with the reason stated.
+   - Reserving 4 outbound slots costs exactly 4 inbound slots: 114 to
+     110 at default `-maxconnections`. At 25% adoption the reserved
+     slots fill in 15 seconds. But a node with fewer than about ten
+     reachable peers never reaches the reserved-slot branch at all, and
+     pays the inbound cost anyway.
 
 Raw JSON for every run is in [`results/`](results/).
 

@@ -1,0 +1,197 @@
+{
+  "note": "peers reached through a local SOCKS5 mapper; see socks_mapper.py",
+  "runs": [
+    {
+      "peers": 24,
+      "dog_peers": 3,
+      "dog_density": 0.125,
+      "reserved_slots": 4,
+      "dog_slots_filled": 3,
+      "seconds_to_fill": null,
+      "final_conn_types": {
+        "dog-relay": 3,
+        "outbound-full-relay": 8,
+        "block-relay-only": 2
+      },
+      "timeline": [
+        {
+          "t": 180.3,
+          "dog_relay": 2,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 185.3,
+          "dog_relay": 2,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 190.3,
+          "dog_relay": 2,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 195.3,
+          "dog_relay": 2,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 200.3,
+          "dog_relay": 3,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 205.3,
+          "dog_relay": 3,
+          "full_relay": 7,
+          "block_relay": 2
+        },
+        {
+          "t": 210.4,
+          "dog_relay": 3,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 215.4,
+          "dog_relay": 2,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 220.4,
+          "dog_relay": 2,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 225.4,
+          "dog_relay": 3,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 230.4,
+          "dog_relay": 3,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 235.4,
+          "dog_relay": 3,
+          "full_relay": 7,
+          "block_relay": 2
+        }
+      ]
+    },
+    {
+      "peers": 24,
+      "dog_peers": 6,
+      "dog_density": 0.25,
+      "reserved_slots": 4,
+      "dog_slots_filled": 4,
+      "seconds_to_fill": 15.0,
+      "final_conn_types": {
+        "block-relay-only": 1,
+        "dog-relay": 4,
+        "outbound-full-relay": 8
+      },
+      "timeline": [
+        {
+          "t": 0.0,
+          "dog_relay": 0,
+          "full_relay": 0,
+          "block_relay": 0
+        },
+        {
+          "t": 5.0,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 10.0,
+          "dog_relay": 3,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 15.0,
+          "dog_relay": 4,
+          "full_relay": 8,
+          "block_relay": 1
+        }
+      ]
+    },
+    {
+      "peers": 24,
+      "dog_peers": 12,
+      "dog_density": 0.5,
+      "reserved_slots": 4,
+      "dog_slots_filled": 4,
+      "seconds_to_fill": 10.0,
+      "final_conn_types": {
+        "outbound-full-relay": 8,
+        "block-relay-only": 2,
+        "dog-relay": 4
+      },
+      "timeline": [
+        {
+          "t": 0.0,
+          "dog_relay": 0,
+          "full_relay": 0,
+          "block_relay": 0
+        },
+        {
+          "t": 5.0,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 10.0,
+          "dog_relay": 4,
+          "full_relay": 8,
+          "block_relay": 2
+        }
+      ]
+    },
+    {
+      "peers": 24,
+      "dog_peers": 24,
+      "dog_density": 1.0,
+      "reserved_slots": 4,
+      "dog_slots_filled": 4,
+      "seconds_to_fill": 10.0,
+      "final_conn_types": {
+        "outbound-full-relay": 8,
+        "block-relay-only": 2,
+        "dog-relay": 4
+      },
+      "timeline": [
+        {
+          "t": 0.0,
+          "dog_relay": 0,
+          "full_relay": 0,
+          "block_relay": 0
+        },
+        {
+          "t": 5.0,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 10.0,
+          "dog_relay": 4,
+          "full_relay": 8,
+          "block_relay": 2
+        }
+      ]
+    }
+  ]
+}

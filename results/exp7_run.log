@@ -1,0 +1,46 @@
+--- 3/24 signalling peers ---
+{
+  "dog_density": 0.125,
+  "dog_slots_filled": 3,
+  "seconds_to_fill": null,
+  "final_conn_types": {
+    "dog-relay": 3,
+    "outbound-full-relay": 8,
+    "block-relay-only": 2
+  }
+}
+--- 6/24 signalling peers ---
+{
+  "dog_density": 0.25,
+  "dog_slots_filled": 4,
+  "seconds_to_fill": 15.0,
+  "final_conn_types": {
+    "block-relay-only": 1,
+    "dog-relay": 4,
+    "outbound-full-relay": 8
+  }
+}
+--- 12/24 signalling peers ---
+{
+  "dog_density": 0.5,
+  "dog_slots_filled": 4,
+  "seconds_to_fill": 10.0,
+  "final_conn_types": {
+    "outbound-full-relay": 8,
+    "block-relay-only": 2,
+    "dog-relay": 4
+  }
+}
+--- 24/24 signalling peers ---
+{
+  "dog_density": 1.0,
+  "dog_slots_filled": 4,
+  "seconds_to_fill": 10.0,
+  "final_conn_types": {
+    "outbound-full-relay": 8,
+    "block-relay-only": 2,
+    "dog-relay": 4
+  }
+}
+
+wrote /Users/baris/bitcoin-lab/dust-utxo-lab/results/exp7_peer_discovery.json

@@ -1,9 +1,11 @@
 # Finding 5: preferential peering works, and it is not free
 
-Status: partly measured, partly derived from source, partly open
+Status: measured, except for peer discovery through gossip
 Base: Bitcoin Core v31.1 with a port of the Libre Relay peering mechanism
-Reproducible via `scripts/exp6_preferential_peering.py`
-Raw data: `results/exp6_preferential_peering.json`
+Reproducible via `scripts/exp6_preferential_peering.py` and
+`scripts/exp7_peer_discovery.py`
+Raw data: `results/exp6_preferential_peering.json`,
+`results/exp7_peer_discovery.json`, `results/exp7_repeats.json`
 
 ## What was actually implemented
 
@@ -83,30 +85,73 @@ back to the network. That is a real trade and it should be stated in the
 release notes rather than left for operators to discover. Operators
 running deliberately small connection limits pay a much larger share.
 
-## What is not measured, and why
+## Does it find its peers? Measured after all
 
-Whether nodes running this actually find each other on a real network.
+The first version of this finding left this open, because addrman
+rejects non-routable addresses (`AddrManImpl::AddSingle`), so loopback
+regtest nodes cannot be placed in it, and synthetic routable addresses
+have nothing listening behind them.
 
-Peer selection is not a service-filtered `addrman.Select()`.
-`ThreadOpenConnections` draws an address and does `continue` if the bit
-is missing, and the surrounding loop gives up after 100 tries. At low
-adoption a node may simply fail to fill the slots it has already
-subtracted from its inbound capacity, which is the worst of both
-outcomes.
+`scripts/socks_mapper.py` closes that gap without touching the host's
+network configuration. Peers are addressed as synthetic public IPs, one
+per /16 since `ThreadOpenConnections` allows only one automatic outbound
+peer per IPv4 /16, and a local SOCKS5 proxy maps each onto the real
+loopback port. The node believes it is dialling `51.<n>.0.1`; the proxy
+connects it to `127.0.0.1:(base + n)`.
 
-Testing that end to end needs an addrman populated with reachable peers
-at a known density. addrman rejects non-routable addresses
-(`AddrManImpl::AddSingle`), so loopback regtest nodes cannot be injected
-into it, and synthetic routable addresses have nothing listening behind
-them. On a single host there is no honest way to run that experiment. I
-would rather leave it open than approximate it and present the
-approximation as an answer.
+24 peer nodes, a varying number of them signalling, one patched observer
+with its addrman pre-populated with all 24 addresses carrying correct
+flags. Measured: how many of the four reserved slots fill.
 
-One further structural point, read from the source rather than measured:
-the reserved-slot branch in `ThreadOpenConnections` sits after the
-full-relay and block-relay branches. A node that cannot fill its 8
-full-relay and 2 block-relay slots never reaches the preferential
-peering branch at all.
+| Signalling peers | Density | Slots filled | Time to fill |
+|---|---|---|---|
+| 3 / 24 | 12.5% | 3 of 4 | not filled |
+| 6 / 24 | 25% | 4 of 4 | 15s |
+| 12 / 24 | 50% | 4 of 4 | 10s |
+| 24 / 24 | 100% | 4 of 4 | 10s |
+
+At 25% and above the mechanism works, and quickly. The concern that
+reserved slots would sit empty at low adoption is not what happens,
+provided the addrman is populated and the peers are reachable.
+
+At 12.5% the ceiling is supply, not selection: there are only three
+signalling peers in the whole network and the observer found them.
+Repeating that case four times gave 3, 3, 3 and 2 slots filled. The run
+that got 2 is the interesting one: an ordinary full-relay slot had taken
+one of the three signalling peers first. Ordinary and reserved slots
+compete for the same scarce peers, and the ordinary ones are filled
+first.
+
+## The case where it never engages at all
+
+The sharpest result came from the smallest setup. Six peers, every one
+of them signalling, so 100% density:
+
+| Peers | Density | Slots filled |
+|---|---|---|
+| 6 / 6 | 100% | 0 of 4 |
+
+Zero, in three consecutive runs.
+
+The reserved-slot branch in `ThreadOpenConnections` sits after the
+full-relay and block-relay branches. With six reachable peers, all six
+are consumed filling the eight full-relay slots, and the reserved branch
+is never reached. A node with fewer than about ten reachable peers gets
+no preferential peering at all, whatever the adoption rate is.
+
+It still pays for it. The four reserved slots are added to
+`m_max_automatic_outbound` regardless of whether they are ever used, so
+such a node loses four inbound slots and gains nothing. That is the
+worst position in this design, and it lands on exactly the nodes with
+the weakest connectivity.
+
+## What is still not measured
+
+How nodes learn about each other in the first place. Everything above
+starts from an addrman that already contains the peers with correct
+service flags. Whether that state is reached through `addr` gossip on a
+real network, and how long it takes at a given adoption rate, is a
+separate question this harness does not answer.
 
 ## Test-only changes this required
 

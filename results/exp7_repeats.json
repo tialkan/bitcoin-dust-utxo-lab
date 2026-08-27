@@ -1,0 +1,42 @@
+{
+  "low_density_repeats": [
+    {
+      "dog_slots_filled": 3,
+      "final": {
+        "dog-relay": 3,
+        "block-relay-only": 2,
+        "outbound-full-relay": 8
+      }
+    },
+    {
+      "dog_slots_filled": 3,
+      "final": {
+        "outbound-full-relay": 8,
+        "dog-relay": 3,
+        "block-relay-only": 2
+      }
+    },
+    {
+      "dog_slots_filled": 2,
+      "final": {
+        "outbound-full-relay": 8,
+        "dog-relay": 2,
+        "block-relay-only": 2
+      }
+    }
+  ],
+  "insufficient_peers_repeats": [
+    {
+      "dog_slots_filled": 0,
+      "final": {
+        "outbound-full-relay": 6
+      }
+    },
+    {
+      "dog_slots_filled": 0,
+      "final": {
+        "outbound-full-relay": 6
+      }
+    }
+  ]
+}
