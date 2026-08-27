@@ -53,6 +53,16 @@ python3 scripts/exp3_utxo_growth.py core/build/bin/bitcoind
 Each script starts and tears down its own isolated regtest node and
 writes JSON to `results/`.
 
+## CI
+
+[`.github/workflows/experiments.yml`](.github/workflows/experiments.yml)
+builds Bitcoin Core v31.1 and reruns the fast experiments on every push,
+then asserts that they still reproduce the figures quoted in the
+findings. A harness change that quietly stops measuring anything fails
+there rather than going unnoticed. The long-running experiments (UTXO
+growth, peer discovery) are reproduced locally instead; see
+`METHODOLOGY.md`.
+
 ## Method
 
 [`METHODOLOGY.md`](METHODOLOGY.md) states the full procedure, the

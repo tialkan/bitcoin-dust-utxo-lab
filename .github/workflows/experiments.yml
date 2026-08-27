@@ -1,0 +1,89 @@
+name: experiments
+
+# Builds Bitcoin Core v31.1 and runs the experiments that finish quickly,
+# so that a change to the harness which silently stops measuring anything
+# fails here rather than sitting unnoticed in the repository.
+#
+# exp3 (UTXO growth) and exp7 (peer discovery) are not run: they take tens
+# of minutes and need many concurrent nodes. Their committed results are
+# reproduced locally, per METHODOLOGY.md.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake pkg-config \
+            libevent-dev libboost-dev libsqlite3-dev
+
+      - name: Cache Bitcoin Core build
+        id: cache-core
+        uses: actions/cache@v4
+        with:
+          path: core/build/bin
+          key: core-v31.1-${{ runner.os }}-v2
+
+      - name: Build Bitcoin Core v31.1
+        if: steps.cache-core.outputs.cache-hit != 'true'
+        run: |
+          git clone --depth 1 --branch v31.1 https://github.com/bitcoin/bitcoin.git core
+          cmake -B core/build -S core \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_GUI=OFF -DENABLE_WALLET=ON -DENABLE_IPC=OFF
+          cmake --build core/build -j"$(nproc)"
+
+      - name: Report version under test
+        run: ./core/build/bin/bitcoind -version | head -1
+
+      - name: Experiment 1 - dust threshold
+        run: python3 scripts/exp1_dust_threshold.py core/build/bin/bitcoind
+
+      - name: Experiment 2 - weight ceiling and cluster limit
+        run: python3 scripts/exp2_weight_and_cluster.py core/build/bin/bitcoind
+
+      - name: Check results against what is committed
+        run: |
+          python3 - <<'PY'
+          import json, sys
+
+          # The committed findings quote these. If a harness change stops
+          # reproducing them, that is a failure, not a silent update.
+          expected_dust = {
+              "P2PKH (legacy)": 546,
+              "P2SH-P2WPKH": 540,
+              "P2WPKH (bech32)": 294,
+              "P2TR (bech32m)": 330,
+          }
+          d = json.load(open("results/exp1_dust_threshold.json"))
+          got = d["default (3000 sat/kvB)"]
+          if got != expected_dust:
+              sys.exit(f"dust thresholds changed: {got} != {expected_dust}")
+          zero = d["-dustrelayfee=0"]
+          if set(zero.values()) != {1}:
+              sys.exit(f"-dustrelayfee=0 no longer yields 1 sat: {zero}")
+
+          w = json.load(open("results/exp2_weight_and_cluster.json"))
+          if w["2a_standardness_ceiling"]["smallest_rejected"]["reject_reason"] != "tx-size":
+              sys.exit("standardness ceiling no longer rejects with tx-size")
+          if w["2b_cluster_limit"]["child_reject_reason"] != "too-large-cluster":
+              sys.exit("cluster limit no longer rejects with too-large-cluster")
+          print("committed results reproduced")
+          PY
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiment-results
+          path: results/
