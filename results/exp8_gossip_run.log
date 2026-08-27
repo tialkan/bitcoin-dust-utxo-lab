@@ -1,0 +1,112 @@
+   {"t": 15, "addrman_total": 1, "addrman_signalling": 1, "dog_relay": 0, "full_relay": 0}
+   {"t": 30, "addrman_total": 2, "addrman_signalling": 2, "dog_relay": 0, "full_relay": 1}
+   {"t": 45, "addrman_total": 2, "addrman_signalling": 2, "dog_relay": 0, "full_relay": 1}
+   {"t": 60, "addrman_total": 2, "addrman_signalling": 2, "dog_relay": 0, "full_relay": 1}
+   {"t": 75, "addrman_total": 2, "addrman_signalling": 2, "dog_relay": 0, "full_relay": 1}
+   {"t": 90, "addrman_total": 4, "addrman_signalling": 4, "dog_relay": 0, "full_relay": 3}
+   {"t": 105, "addrman_total": 4, "addrman_signalling": 4, "dog_relay": 0, "full_relay": 3}
+   {"t": 120, "addrman_total": 4, "addrman_signalling": 4, "dog_relay": 0, "full_relay": 3}
+   {"t": 135, "addrman_total": 5, "addrman_signalling": 4, "dog_relay": 0, "full_relay": 4}
+   {"t": 150, "addrman_total": 6, "addrman_signalling": 5, "dog_relay": 0, "full_relay": 5}
+   {"t": 165, "addrman_total": 7, "addrman_signalling": 5, "dog_relay": 0, "full_relay": 6}
+   {"t": 180, "addrman_total": 8, "addrman_signalling": 6, "dog_relay": 0, "full_relay": 7}
+   {"t": 195, "addrman_total": 8, "addrman_signalling": 6, "dog_relay": 0, "full_relay": 7}
+   {"t": 210, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 225, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 240, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 255, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 270, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 285, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 300, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 315, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 330, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 345, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 360, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 375, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 390, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 405, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 420, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 435, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 450, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 465, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 480, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 495, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 510, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 525, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 540, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 555, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 570, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 585, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 600, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 615, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 630, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 645, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 660, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 675, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 690, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 705, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 720, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 735, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 750, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 765, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 780, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 795, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 810, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 825, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 840, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 855, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 870, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 885, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 900, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 915, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 930, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 945, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 960, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 975, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 990, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1005, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1020, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1036, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1051, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1066, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1081, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1096, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1111, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1126, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1141, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1156, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1171, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1186, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1201, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1216, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1231, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1246, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1261, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1276, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1291, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1306, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1321, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1336, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1351, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1366, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1381, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1396, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1411, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1426, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1441, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1456, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1471, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1486, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+   {"t": 1501, "addrman_total": 9, "addrman_signalling": 7, "dog_relay": 0, "full_relay": 8}
+{
+  "dog_density": 0.5,
+  "addrman_total_learned": 9,
+  "addrman_signalling_learned": 7,
+  "dog_slots_filled": 0,
+  "seconds_to_fill": null,
+  "final_conn_types": {
+    "outbound-full-relay": 8,
+    "block-relay-only": 1
+  }
+}
+wrote /Users/baris/bitcoin-lab/dust-utxo-lab/results/exp8_gossip_12of24.json

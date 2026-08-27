@@ -145,13 +145,52 @@ such a node loses four inbound slots and gains nothing. That is the
 worst position in this design, and it lands on exactly the nodes with
 the weakest connectivity.
 
+## Learning the peers in the first place
+
+Everything above starts from an addrman already holding the peers.
+`scripts/exp8_gossip_discovery.py` removes that assumption: every node
+advertises a synthetic public address via `-externalip`, is reachable at
+it through the mapper, and the observer starts knowing nothing but a
+single bootstrap hub, as it would from a seed node. Nothing is
+pre-populated.
+
+24 peers, 12 of them signalling, one observer, 25 minutes:
+
+| Elapsed | Addresses known | Signalling known | Outbound full-relay | Reserved slots |
+|---|---|---|---|---|
+| 60s | 2 | 2 | 1 | 0 |
+| 180s | 8 | 6 | 7 | 0 |
+| 300s | 9 | 7 | 8 | 0 |
+| 900s | 9 | 7 | 8 | 0 |
+| 1500s | 9 | 7 | 8 | 0 |
+
+Discovery plateaued at 9 of 24 addresses after five minutes and did not
+move again for the following twenty. The reserved slots never filled.
+
+The reason is precise, and it is the branch ordering again, one step
+earlier than expected. The observer ended with 8 full-relay and 1
+block-relay connection, having used all nine addresses it knew. The
+reserved-slot branch sits after the block-relay branch, which requires
+two. One address short of a slot nobody thinks about, the node never
+reaches preferential peering at all.
+
+Two caveats, and they matter. This is a single run. And a 24 node closed
+network with one bootstrap hub is a much thinner address supply than the
+real network, where a node starts from DNS seeds with hundreds of
+addresses; the plateau at 9 is an artifact of that thinness, not a
+prediction about mainnet.
+
+What is not an artifact is the ordering. Reserved slots are reached only
+after 8 full-relay and 2 block-relay slots are satisfied, so how fast a
+node learns peers directly gates whether preferential peering engages at
+all. And the inbound cost is charged from the first second, whether or
+not it ever engages.
+
 ## What is still not measured
 
-How nodes learn about each other in the first place. Everything above
-starts from an addrman that already contains the peers with correct
-service flags. Whether that state is reached through `addr` gossip on a
-real network, and how long it takes at a given adoption rate, is a
-separate question this harness does not answer.
+Any of this at realistic network scale. Everything here is a small
+closed network on one host. The mechanism, the costs and the ordering
+reproduce; the timings and the plateau do not transfer to mainnet.
 
 ## Test-only changes this required
 

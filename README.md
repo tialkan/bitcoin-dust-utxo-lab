@@ -27,9 +27,11 @@ and publishes the harness so the numbers can be checked.
 5. [Preferential peering works, and it is not free](findings/05-preferential-peering.md)
    - Reserving 4 outbound slots costs exactly 4 inbound slots: 114 to
      110 at default `-maxconnections`. At 25% adoption the reserved
-     slots fill in 15 seconds. But a node with fewer than about ten
-     reachable peers never reaches the reserved-slot branch at all, and
-     pays the inbound cost anyway.
+     slots fill in 15 seconds. But the reserved branch is reached only
+     after 8 full-relay and 2 block-relay slots are satisfied, so a node
+     short of peers never engages the mechanism while still paying the
+     inbound cost. Starting from gossip rather than a pre-filled
+     addrman, it did not engage at all in 25 minutes.
 
 Raw JSON for every run is in [`results/`](results/).
 

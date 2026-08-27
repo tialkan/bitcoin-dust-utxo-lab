@@ -61,6 +61,12 @@ class Handler(socketserver.BaseRequestHandler):
             except OSError:
                 sock.sendall(b"\x05\x05\x00\x01" + b"\x00" * 6)
                 return
+            # create_connection leaves the timeout on the socket, which would
+            # then fire on any 10s lull in an otherwise healthy peer connection
+            # and tear it down. The timeout is wanted for connect(), not for
+            # the relayed traffic.
+            upstream.settimeout(None)
+            sock.settimeout(None)
             sock.sendall(b"\x05\x00\x00\x01" + socket.inet_aton("127.0.0.1")
                          + struct.pack(">H", port))
             self._pump(sock, upstream)
