@@ -1,0 +1,56 @@
+{
+  "reserved_per_peer_weight": 404000,
+  "probes": [
+    {
+      "target_vsize": 50000,
+      "weight": 199999,
+      "accepted_into_orphanage": true,
+      "multiple_of_per_peer_reservation": 0.5
+    },
+    {
+      "target_vsize": 99000,
+      "weight": 395999,
+      "accepted_into_orphanage": true,
+      "multiple_of_per_peer_reservation": 0.98
+    },
+    {
+      "target_vsize": 100000,
+      "weight": 399999,
+      "accepted_into_orphanage": true,
+      "multiple_of_per_peer_reservation": 0.99
+    },
+    {
+      "target_vsize": 100500,
+      "weight": 401999,
+      "accepted_into_orphanage": false,
+      "multiple_of_per_peer_reservation": 1.0
+    },
+    {
+      "target_vsize": 100900,
+      "weight": 403599,
+      "accepted_into_orphanage": false,
+      "multiple_of_per_peer_reservation": 1.0
+    },
+    {
+      "target_vsize": 101000,
+      "weight": 403999,
+      "accepted_into_orphanage": false,
+      "multiple_of_per_peer_reservation": 1.0
+    },
+    {
+      "target_vsize": 300000,
+      "weight": 1199999,
+      "accepted_into_orphanage": false,
+      "multiple_of_per_peer_reservation": 2.97
+    },
+    {
+      "target_vsize": 974000,
+      "weight": 3895999,
+      "accepted_into_orphanage": false,
+      "multiple_of_per_peer_reservation": 9.64
+    }
+  ],
+  "largest_accepted_orphan_weight": 399999,
+  "largest_as_multiple_of_reservation": 0.99,
+  "orphan_pool_size_at_end": 0
+}

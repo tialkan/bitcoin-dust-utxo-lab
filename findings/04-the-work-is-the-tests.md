@@ -50,14 +50,18 @@ policy.h" propagates into:
   `package-too-large` path stops being reachable, because the count
   limit now trips first. That is a behaviour change, not a test that
   needs its expected string updated.
-- the orphan pool's DoS bounds (`orphanage_tests`), which are sized
-  against the standard transaction ceiling
+- the orphan pool (`orphanage_tests`), whose test is sized against the
+  standard transaction ceiling. I first read this as a DoS bound that the
+  change loosens. Measurement says otherwise: see finding 7. The per-peer
+  memory reservation binds first and the effective orphan ceiling does not
+  move, so this one is a mechanical fix after all
 - wallet coin selection's maximum weight (`coinselector_tests`)
 
 Only two of the five are simple constant updates in test expectations.
-The `txpackage_tests` and `orphanage_tests` failures are questions
-about intended behaviour that a maintainer has to answer before the
-tests can be rewritten honestly.
+The `txpackage_tests` failures are questions about intended behaviour
+that a maintainer has to answer before the tests can be rewritten
+honestly. The `orphanage_tests` one looked like another, but finding 7
+measured it and it is not.
 
 This is the ratio anyone budgeting effort should plan around: the
 patch is 3 lines, and it is the smallest part of the job. The rest is

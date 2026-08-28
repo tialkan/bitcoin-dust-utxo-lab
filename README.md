@@ -39,6 +39,12 @@ and publishes the harness so the numbers can be checked.
      where thirty leave stock's untouched. A control run separates this
      from the multiplier change itself.
 
+7. [The orphan pool ceiling does not move, and a claim I got wrong](findings/07-the-orphanage-ceiling-does-not-move.md)
+   - I argued the weight change loosens an orphan-pool DoS bound. Measured
+     on both builds, the effective ceiling is ~400,000 WU either way,
+     because the per-peer memory reservation binds before the check I was
+     pointing at. Correction, with the numbers.
+
 Raw JSON for every run is in [`results/`](results/).
 
 ## Reproducing
