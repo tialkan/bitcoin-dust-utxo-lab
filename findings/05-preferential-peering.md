@@ -133,11 +133,32 @@ of them signalling, so 100% density:
 
 Zero, in three consecutive runs.
 
-The reserved-slot branch in `ThreadOpenConnections` sits after the
-full-relay and block-relay branches. With six reachable peers, all six
-are consumed filling the eight full-relay slots, and the reserved branch
-is never reached. A node with fewer than about ten reachable peers gets
-no preferential peering at all, whatever the adoption rate is.
+The reserved-slot branch sits well down the priority chain in
+`ThreadOpenConnections`. With six reachable peers, all six are consumed
+filling the eight full-relay slots, and the reserved branch is never
+reached. A node with fewer than about ten reachable peers gets no
+preferential peering at all, whatever the adoption rate is.
+
+An earlier version of this finding described the branch as sitting
+"after the full-relay and block-relay branches", which implied two tiers
+ahead of it. That understated it. Counted in the if/else-if chain:
+
+1. anchor block-relay
+2. full-relay
+3. block-relay
+4. `GetTryNewOutboundPeer()`, a second full-relay path
+5. the periodic extra-block-relay anti-eclipse branch
+6. **reserved slots**
+7. feeler
+8. extra network peer
+
+Five tiers ahead, not two. Because each pass through the loop commits to
+one connection type, a senior quota that is permanently unmet, for
+instance full-relay stuck below 8 because the address pool is thin,
+blocks the chain from ever reaching the reserved branch however many
+attempts run. That is a general property of the ordering rather than an
+artifact of a particular harness size. Correction due to Mehdalon on
+bitcoindogmode/bitcoin#3.
 
 It still pays for it. The four reserved slots are added to
 `m_max_automatic_outbound` regardless of whether they are ever used, so
@@ -170,7 +191,7 @@ move again for the following twenty. The reserved slots never filled.
 The reason is precise, and it is the branch ordering again, one step
 earlier than expected. The observer ended with 8 full-relay and 1
 block-relay connection, having used all nine addresses it knew. The
-reserved-slot branch sits after the block-relay branch, which requires
+reserved-slot branch sits below the block-relay branch, which wants
 two. One address short of a slot nobody thinks about, the node never
 reaches preferential peering at all.
 
