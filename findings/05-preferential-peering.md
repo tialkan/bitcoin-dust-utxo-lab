@@ -207,6 +207,66 @@ node learns peers directly gates whether preferential peering engages at
 all. And the inbound cost is charged from the first second, whether or
 not it ever engages.
 
+## Added 10 October 2026: the merged implementation and PR #10
+
+Everything above was measured on a port of Libre Relay's mechanism
+(`NODE_DOG_RELAY`, bit 28, connection type `dog-relay`). The implementation
+that was actually merged (bitcoindogmode/bitcoin#3, merge commit
+`75032400914250c7ad857dc29043761680a66485`) is different code: bit 14
+(`NODE_DOG_MODE`), connection type `dog`, `MAX_DOG_MODE_CONNECTIONS = 4`.
+Its `dog` choice also sits above the feeler and network-specific choices in
+`ThreadOpenConnections`. PR #10 (`dogofbitcoin`) moves it below them and
+reports, from mainnet, 0-1 feelers per hour without the change against 28-32
+with it. This section reruns the same topology as experiment 7 on both builds
+(`scripts/exp11_merged_vs_pr10.py`, results in `results/exp11_*.json`).
+
+Build notes, because they affect how far this can be trusted: both builds are
+the PR's own commits plus one test-only patch (`addpeeraddress` accepting a
+services argument, the same patch as before). On this machine (macOS 26.6,
+SDK 27) a fresh build of any commit, including stock `31.1-dogmode`, crashes
+at start-up in `TokenPipe::Make()` because the SDK declares `pipe2` and the OS
+does not provide it; the builds here use `-DHAVE_DECL_PIPE2=0`. That is a
+toolchain issue and says nothing about the DOG Mode code.
+
+**Slot fill, same four densities as before, one run per cell:**
+
+| Peers (signalling) | merged `7503240091` | PR #10 |
+|---|---|---|
+| 24 (3) | 2 of 4 | 2 of 4 |
+| 24 (12) | 4 of 4, 10 s | 4 of 4, 10 s |
+| 24 (24) | 4 of 4, 10 s | 4 of 4, 10 s |
+| 6 (6) | 0 of 4 | 0 of 4 |
+
+The six-peer case is unchanged by PR #10, as it should be: the `dog` choice is
+still below the full-relay choice, so a node short of peers never reaches it.
+PR #10 does not address that, and does not claim to.
+
+**Feelers, with addresses in the `new` table (420 s, one run per cell):**
+
+| Peers (signalling) | build | `dog` connections | feelers opened |
+|---|---|---|---|
+| 24 (3) | merged | 1 | 0 |
+| 24 (3) | PR #10 | 0 | 4 |
+
+With a `dog` slot empty, the merged build opened no feeler in 420 s where
+about 3.5 would be expected at the default interval; PR #10 opened four. This
+agrees with the mainnet reading in #10 and with the ordering in the code.
+
+What this does and does not show:
+
+- The first version of this experiment seeded addrman with `tried=True` and
+  reported 0 feelers on every build. Feelers draw only from the `new` table, so
+  that column carried no information and is not reported. The table above
+  uses `tried=False`.
+- One run per cell. In the 3-signalling-peer row the two builds ended with
+  different numbers of `dog` connections (1 and 0) because which peers the
+  full-relay slots take first is random; that difference is not attributable
+  to PR #10.
+- Feeler counts in the 12-signalling-peer rows cover only the seconds before
+  the slots filled, and are not informative.
+- Same limits as the rest of this finding: 24 nodes on one host, not a
+  network, and PR #10's own functional test was not run here.
+
 ## What is still not measured
 
 Any of this at realistic network scale. Everything here is a small

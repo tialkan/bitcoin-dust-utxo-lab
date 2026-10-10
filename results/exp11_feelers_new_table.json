@@ -1,0 +1,252 @@
+{
+  "note": "merged = bitcoindogmode/bitcoin@7503240091, pr10 = PR #10 head; peers reached through a local SOCKS5 mapper",
+  "runs": [
+    {
+      "feeler_attempts_logged": 0,
+      "peers": 24,
+      "dog_peers": 3,
+      "dog_density": 0.125,
+      "reserved_slots": 4,
+      "dog_slots_filled": 1,
+      "seconds_to_fill": null,
+      "final_conn_types": {
+        "outbound-full-relay": 8,
+        "block-relay-only": 2,
+        "dog": 1
+      },
+      "timeline": [
+        {
+          "t": 360.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 365.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 370.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 375.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 380.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 385.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 390.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 395.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 400.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 405.5,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 410.6,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 415.6,
+          "dog_relay": 1,
+          "full_relay": 8,
+          "block_relay": 2
+        }
+      ],
+      "build": "merged"
+    },
+    {
+      "feeler_attempts_logged": 2,
+      "peers": 24,
+      "dog_peers": 12,
+      "dog_density": 0.5,
+      "reserved_slots": 4,
+      "dog_slots_filled": 4,
+      "seconds_to_fill": 10.0,
+      "final_conn_types": {
+        "outbound-full-relay": 8,
+        "block-relay-only": 2,
+        "dog": 4
+      },
+      "timeline": [
+        {
+          "t": 0.0,
+          "dog_relay": 0,
+          "full_relay": 0,
+          "block_relay": 0
+        },
+        {
+          "t": 5.0,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 10.0,
+          "dog_relay": 4,
+          "full_relay": 8,
+          "block_relay": 2
+        }
+      ],
+      "build": "merged"
+    },
+    {
+      "feeler_attempts_logged": 4,
+      "peers": 24,
+      "dog_peers": 3,
+      "dog_density": 0.125,
+      "reserved_slots": 4,
+      "dog_slots_filled": 0,
+      "seconds_to_fill": null,
+      "final_conn_types": {
+        "outbound-full-relay": 8,
+        "block-relay-only": 2
+      },
+      "timeline": [
+        {
+          "t": 360.5,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 365.5,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 370.5,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 375.5,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 380.5,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 385.5,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 390.5,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 395.5,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 400.6,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 405.6,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 410.6,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 415.6,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        }
+      ],
+      "build": "pr10"
+    },
+    {
+      "feeler_attempts_logged": 0,
+      "peers": 24,
+      "dog_peers": 12,
+      "dog_density": 0.5,
+      "reserved_slots": 4,
+      "dog_slots_filled": 4,
+      "seconds_to_fill": 10.0,
+      "final_conn_types": {
+        "outbound-full-relay": 8,
+        "block-relay-only": 2,
+        "dog": 4
+      },
+      "timeline": [
+        {
+          "t": 0.0,
+          "dog_relay": 0,
+          "full_relay": 0,
+          "block_relay": 0
+        },
+        {
+          "t": 5.0,
+          "dog_relay": 0,
+          "full_relay": 8,
+          "block_relay": 2
+        },
+        {
+          "t": 10.0,
+          "dog_relay": 4,
+          "full_relay": 8,
+          "block_relay": 2
+        }
+      ],
+      "build": "pr10"
+    }
+  ]
+}
